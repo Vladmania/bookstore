@@ -6,7 +6,7 @@ export const Authorized = (props) =>{
 
     //Функция регистрации и после регистрации вход
     const registry = (log, pas) =>{
-        fetch('http://localhost:5000/api/registration',{
+        fetch('http://localhost:3000/api/registration',{
             method:"POST",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -15,7 +15,7 @@ export const Authorized = (props) =>{
         })
         .then((response) => {return response.json()}) 
             
-              fetch('http://localhost:5000/api/user',{
+              fetch('http://localhost:3000/api/user',{
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
@@ -57,15 +57,7 @@ export const Authorized = (props) =>{
                         props.entranceEditor(false)
             }
 
-            //Редактирование автарки
-            // const editedAvatar = (formData) =>{
-            //         axios.post('http://localhost:5000/api/editoruseravatar', formData,{
-            //             headers: {
-            //                 'Content-Type': 'multipart/form-data'
-            //             }
-            //         }).then(res => console.log(res.data.path))
-            //                 // .then( res => props.addUser(res))
-            // }
+            
 
     if(props.user !== null){
         props.authUser()

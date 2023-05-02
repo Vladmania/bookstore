@@ -17,11 +17,11 @@ export const ProductInBasket = (props) =>{
                 </div>
                     <div className="product_in_basket_quantity">
                         <p>+</p>
-                        <input />
+                        <input type="number" value={props.quantity}/>
                         <p>-</p>
                     </div>
                         <div className="product_in_basket_sum">
-                            <p>499</p>
+                            <p>{props.price * props.quantity}</p>
                         </div>
             </StyleProductInBasket>
     )

@@ -59,4 +59,8 @@ export const StyleProductInBasket = styled.div`
         color: blue;
         cursor: pointer;
     }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+       appearance: none; 
+    }
    `

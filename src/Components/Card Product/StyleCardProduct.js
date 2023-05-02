@@ -43,7 +43,7 @@ export const StyleCardProduct = styled.div`
 }
 .cardproduct_name{
     overflow: hidden;
-    max-height: 40px;
+    max-height: 35px;
     cursor: pointer;
 }
 .cardproduct_name a{

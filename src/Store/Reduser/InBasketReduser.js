@@ -1,3 +1,5 @@
+import {addInBacket} from "../../Components/Api/ServerRequests"
+
 const ADD_PRODUCT = "ADD_PRODUCT"
 const DELETE_PRODUCT = "DELETE_PRODUCT"
 const ADD_PRODUCT_USER = "ADD_PRODUCT_USER"
@@ -40,3 +42,9 @@ export const addProductInBascet = (product) => ({type: ADD_PRODUCT, product})
 export const addProductInBascetUser = (product) => ({type: ADD_PRODUCT_USER, product})
 export const deleteProduct = (productId) => ({type: DELETE_PRODUCT, productId})
 export const requestFlag = (flag) => ({type: REQUEST_SERVER, flag})
+
+export const postaddInBacket = (...data) =>{
+    return(dispatch) =>{
+        addInBacket(...data).then(res => dispatch(addProductInBascet(res)))
+    }
+}

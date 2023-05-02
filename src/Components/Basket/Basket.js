@@ -12,6 +12,10 @@ export const Basket = (props) =>{
     const inBaskets = props.basket.map(e => <ProductInBasket id={e.id} name={e.name} 
         price={e.price} description={e.description} img={e.img} quantity={e.quantity}
         deleteProductFromBasket={deleteProductFromBasket}/>)
+        
+        const totalCost = props.basket.map(e => Number(e.price * e.quantity))
+        const sum = props.basket.length !== 0 ? totalCost.reduce((a,b) => a + b) : 0
+
     return(
         <StyleBasket>
             <h1>Корзина</h1>
@@ -23,7 +27,7 @@ export const Basket = (props) =>{
             </div>
             {inBaskets}
             <div>
-                <p>Общая стоймость:</p>
+                <p>Общая стоймость: {sum}</p>
                 <div className="basket_button">Оформить покупку</div>
             </div>
 

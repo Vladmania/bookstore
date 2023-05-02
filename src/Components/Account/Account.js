@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {StyleAccount} from './StyleAccount'
-
+import axios from 'axios'
+import { useCallback } from 'react'
 
 
 export const Account = (props) =>{
@@ -10,21 +11,34 @@ export const Account = (props) =>{
     const [tel, setTel] = useState("")
     const [email, setEmail] = useState("")
     const [avatar, setAvatar] = useState(null)
+    const [img , setImg] = useState(null)
 
-    const formData = new FormData()
-    formData.append("avatar", avatar)
+    console.log(avatar);
+    const sendFile = useCallback(async ()=>{
+        try {
+            const data = new FormData()
+            data.append("avatar", img)
+
+            await axios.post('http://localhost:5000/api/editoruseravatar', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                
+            }).then(res => setAvatar(res.data.path))
+        } catch (error) {}
+    }, [img])
 
    debugger
     return(
         <StyleAccount>
             <div className='account_user'>
-                <img src=""></img>
+                <img src={avatar}></img>
                 <h3>{props.data.fio ? props.data.fio : props.data.login}</h3> 
 
                 <input  type='file' 
-                        onChange={e => setAvatar(e.target.files[0])}
+                        onChange={e => setImg(e.target.files[0])}
                         accept='image/*'/>
-                 <button onClick={()=>props.editedAvatar(formData)}>заменить</button>
+                 <button onClick={()=> sendFile()}>заменить</button>
              </div>
             <div className='account_user_accounting'>
                     <h3>Учетные данные</h3>

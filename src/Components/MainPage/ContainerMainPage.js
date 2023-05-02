@@ -2,15 +2,16 @@ import { connect } from "react-redux";
 import { MainPage } from "./MainPage";
 import { addProductInBascet } from "../../Store/Reduser/InBasketReduser"; 
 import { setProduct } from "../../Store/Reduser/MainPageReduser";
-import { addProductInBascetUser } from '../../Store/Reduser/InBasketReduser'
-import { requestFlag } from '../../Store/Reduser/InBasketReduser'
+import { addProductInBascetUser, postaddInBacket, requestFlag } from '../../Store/Reduser/InBasketReduser'
+
 
 let mapStateToProps = (state) =>{
     return{
         products: state.MainPageReduser.products,
         user: state.UserReduser.user,
         authorized: state.UserReduser.authorized,
-        requestGet: state.InBasketReduser.requestGet
+        requestGet: state.InBasketReduser.requestGet,
+        basket: state.InBasketReduser.ProductsInBasket,
     }
 }
 
@@ -27,6 +28,9 @@ let mapDispatchToProps = (dispatch) =>{
         },
         requestFlag: (flag)=>{
             dispatch(requestFlag(flag))
+        },
+        postaddInBacket: (...prod) =>{
+            dispatch(postaddInBacket(...prod))
         }
     }
 }
