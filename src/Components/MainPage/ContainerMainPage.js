@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { MainPage } from "./MainPage";
 import { addProductInBascet } from "../../Store/Reduser/InBasketReduser"; 
-import { setProduct } from "../../Store/Reduser/MainPageReduser";
+import { setProduct, requestGetProduct } from "../../Store/Reduser/MainPageReduser";
 import { addProductInBascetUser, postaddInBacket, requestFlag } from '../../Store/Reduser/InBasketReduser'
 
 
@@ -31,6 +31,9 @@ let mapDispatchToProps = (dispatch) =>{
         },
         postaddInBacket: (...prod) =>{
             dispatch(postaddInBacket(...prod))
+        },
+        requestGetProduct: ()=>{
+            dispatch(requestGetProduct())
         }
     }
 }

@@ -1,5 +1,4 @@
 const poll = require('../bazaData')
-const fileMiddleware = require('../middleware/file')
 
 
 class UserControler {
@@ -15,7 +14,6 @@ class UserControler {
 
     }
     async Users(req, res){
-        
         const prod = await poll.query('SELECT * FROM client')
         res.json(prod.rows)
 

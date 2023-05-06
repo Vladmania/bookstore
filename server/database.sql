@@ -31,10 +31,12 @@ create TABLE client(
 create TABLE products_in_baskets(
     id SERIAL PRIMARY key,
     idUser INTEGER,
+    idProd INTEGER,
+    FOREIGN KEY (idProd) REFERENCES products (id),
     FOREIGN KEY (idUser) REFERENCES client (id),
     img TEXT,
     name TEXT,
     price TEXT,
-    quantity TEXT
+    quantity INTEGER
 );
 

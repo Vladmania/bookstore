@@ -6,9 +6,10 @@ export const PagesProducts = (props) =>{
     const param = useParams()
     
     const addproduct = props.products.map(e => e.id === Number(param.productId) ? 
-    <PageProduct product={{...e}} idUser={props.user.id} 
+    <PageProduct product={{...e}} idUser={props.user ? props.user.id : null} 
                  postaddInBacket={props.postaddInBacket} 
-                 addProductInBascet={props.addProductInBascet}/> : null)
+                 addProductInBascet={props.addProductInBascet}
+                 addProductInBascetUser={props.addProductInBascetUser}/> : null)
            
         
     return(

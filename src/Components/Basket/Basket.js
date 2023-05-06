@@ -2,18 +2,13 @@ import { StyleBasket } from "./StyleBasket"
 import { ProductInBasket } from "./ProductInBasket"
 
 export const Basket = (props) =>{
-    const deleteProductFromBasket = (id) =>{
-        fetch('http://localhost:5000/api/deletebasket/' + id,{
-            method: "DELETE",
-           }).then((response) =>  response.text())
-             .then(props.deleteProduct(id))
-    }
 
-    const inBaskets = props.basket.map(e => <ProductInBasket id={e.id} name={e.name} 
-        price={e.price} description={e.description} img={e.img} quantity={e.quantity}
-        deleteProductFromBasket={deleteProductFromBasket}/>)
+    const inBaskets = props.basket.map(e => <ProductInBasket product={{...e}}
+        deleteProductFromBasket={props.deleteProductBasket} decreaseQuantity={props.decreaseQuantity}
+        increaseQuantity={props.increaseQuantity} putEditorIncreaseBasket={props.putEditorIncreaseBasket}
+        putEditorDecreaseBasket={props.putEditorDecreaseBasket}/>)
         
-        const totalCost = props.basket.map(e => Number(e.price * e.quantity))
+        const totalCost = props.basket.map(e => e.price * e.quantity)
         const sum = props.basket.length !== 0 ? totalCost.reduce((a,b) => a + b) : 0
 
     return(

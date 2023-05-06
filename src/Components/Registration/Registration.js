@@ -17,8 +17,8 @@ export const Registration = (props) =>{
                     onChange={e => setPassword(e.target.value)}
                     type="password"/>
                     <div>
-                        <div className="registration_button" onClick={()=> props.registry(login, password)}>Зарегестрироватся</div>
-                        <div className="registration_button" onClick={()=> props.entrance(login, password)}>Войти</div>
+                        <div className="registration_button" onClick={()=> props.requestPostRegistr(login, password)}>Зарегестрироватся</div>
+                        <div className="registration_button" onClick={()=> props.requestPostEntrance(login, password)}>Войти</div>
                     </div>
                 </div>
             </StyleRegistration>

@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import {StyleAccount} from './StyleAccount'
-import axios from 'axios'
-import { useCallback } from 'react'
 
 
 export const Account = (props) =>{
@@ -10,35 +8,23 @@ export const Account = (props) =>{
     const [gender, setGender] = useState("")
     const [tel, setTel] = useState("")
     const [email, setEmail] = useState("")
-    const [avatar, setAvatar] = useState(null)
     const [img , setImg] = useState(null)
 
-    console.log(avatar);
-    const sendFile = useCallback(async ()=>{
-        try {
-            const data = new FormData()
-            data.append("avatar", img)
+    const data = new FormData()
+    data.append("avatar", img)
+    data.append("id", props.data.id)
 
-            await axios.post('http://localhost:5000/api/editoruseravatar', data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                
-            }).then(res => setAvatar(res.data.path))
-        } catch (error) {}
-    }, [img])
-
-   debugger
     return(
         <StyleAccount>
             <div className='account_user'>
-                <img src={avatar}></img>
+                <img src={props.data.avatar ? "http://localhost:5000/" + props.data.avatar 
+                : "https://img.icons8.com/ios/256/user-male-circle.png"} />
                 <h3>{props.data.fio ? props.data.fio : props.data.login}</h3> 
 
                 <input  type='file' 
                         onChange={e => setImg(e.target.files[0])}
                         accept='image/*'/>
-                 <button onClick={()=> sendFile()}>заменить</button>
+                 <button className='account_user_button_avatar' onClick={()=> props.editorAvatar(data)}>заменить</button>
              </div>
             <div className='account_user_accounting'>
                     <h3>Учетные данные</h3>
@@ -56,7 +42,10 @@ export const Account = (props) =>{
                             </span>
                                 <span>
                                     <p className='account_user_data_header'>Пол</p>
-                                        {props.editor ? <input onChange={e => setGender(e.target.value)}/> :
+                                        {props.editor ? <><label for="contactChoice1">Мужской</label>
+                                                <input type='radio' name="contact" value="Мужской" onClick={() => setGender("Мужской")}/>
+                                                <label for="contactChoice2">Женский</label>
+                                                <input type='radio' name="contact" value="Женский" onClick={() => setGender("Женский")}/></> :
                                         <p className='account_user_data_header_data'>{props.data.gender}</p>}
                                 </span>
                     </div>
@@ -74,7 +63,12 @@ export const Account = (props) =>{
                         </div>
                     </div>
                     {props.editor ?<div className='account_user_editor_button'>
-                        <div className='account_user_editor' onClick={()=> props.editedData(fio, birthDate, email, tel, gender, props.data.id)}>Сохранить</div>
+                        <div className='account_user_editor' onClick={()=> props.requestPutEditedData(fio || props.data.fio , 
+                            birthDate || props.data.birthdate, 
+                            email || props.data.email, 
+                            tel || props.data.tel, 
+                            gender || props.data.gender, 
+                            props.data.id)}>Сохранить</div>
                         <div className='account_user_editor' 
                             onClick={()=> props.entranceEditor(false)}>Отмена</div>
                     </div> : null}

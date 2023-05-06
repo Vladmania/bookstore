@@ -2,8 +2,12 @@ import { connect } from "react-redux";
 import { Authorized } from "./Authorized"; 
 import { addUser } from "../../Store/Reduser/UserReduser";
 import { authUser } from "../../Store/Reduser/UserReduser";
-import { entranceEditor } from '../../Store/Reduser/UserReduser';
-import { addProductInBascet } from "../../Store/Reduser/InBasketReduser"; 
+import { entranceEditor, 
+         editorAvatar, 
+         requestPostRegistr, 
+         requestPostEntrance,
+         requestPutEditedData } from '../../Store/Reduser/UserReduser';
+import { addProductInBascet, requestGetUserCart } from "../../Store/Reduser/InBasketReduser"; 
 import { requestFlag } from '../../Store/Reduser/InBasketReduser'
 
 let mapStateToProps = (state) =>{
@@ -31,6 +35,21 @@ let mapDispatchToProps = (dispatch) =>{
         },
         requestFlag: (flag)=>{
             dispatch(requestFlag(flag))
+        },
+        editorAvatar: (data)=>{
+            dispatch(editorAvatar(data))
+        },
+        requestPostRegistr: (log, pas)=>{
+            dispatch(requestPostRegistr(log, pas))
+        },
+        requestPostEntrance: (log, pas)=>{
+            dispatch(requestPostEntrance(log, pas))
+        },
+        requestPutEditedData: (...data)=>{
+            dispatch(requestPutEditedData(...data))
+        },
+        requestGetUserCart: (id)=>{
+            dispatch(requestGetUserCart(id))
         }
     }
 }

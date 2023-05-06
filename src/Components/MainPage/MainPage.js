@@ -4,9 +4,7 @@ import {StyleMainPage} from "./StyleMainPage"
 
 export const MainPage = (props) =>{
     if(props.products.length === 0){
-        fetch('http://localhost:5000/api/prod')
-        .then((response) => {return response.json()})
-        .then(res => props.setProduct(res))
+        props.requestGetProduct()
     }
    
     const Product = props.products

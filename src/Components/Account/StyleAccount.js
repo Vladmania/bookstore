@@ -14,7 +14,10 @@ export const StyleAccount = styled.div`
     
    }
    img{
-      width: 150px;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
    }
    .account_user_data{
       display: flex;
@@ -22,6 +25,10 @@ export const StyleAccount = styled.div`
    }
    .account_user_accounting{
       width: 40%;
+   }
+   .account_user_button_avatar{
+      margin: 10% 55% 0 0;
+      width: 45%;
    }
    .account_user_editor{
       display: flex;

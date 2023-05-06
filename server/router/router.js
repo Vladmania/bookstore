@@ -13,6 +13,7 @@ router.delete("/delete/:id",ProductControler.deleteProduct)
 
 router.post("/addinbasket", BasketControler.addInBacket)
 router.get("/basket", BasketControler.getBacket)
+router.put("/editorbasket", BasketControler.editorFromBacket)
 router.delete("/deletebasket/:id", BasketControler.deleteFromBacket)
 
 router.post("/addfeedback", FeedbacksControler.addFeedback)
@@ -22,7 +23,7 @@ router.post("/registration", UserControler.addUser)
 router.post("/user", UserControler.loginUser)
 router.get("/users", UserControler.Users)
 router.put("/editoruser", UserControler.editorDataUser)
-router.post("/editoruseravatar",fileMiddleware.single('avatar'), UserControler.editorDataUserAvatar)
+router.put("/editoruseravatar",fileMiddleware.single('avatar'), UserControler.editorDataUserAvatar)
 router.delete("/deleteuser/:id", UserControler.deleteUser)
 
 module.exports = router

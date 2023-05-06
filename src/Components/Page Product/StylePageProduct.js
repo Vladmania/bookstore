@@ -12,6 +12,10 @@ export const StylePageProduct = styled.div`
         justify-content: space-around;
         margin: 10px;
     }
+    .page_product_info img{
+        width: 30%;
+        height: 100%;
+    }
     .page_product_price{
         box-shadow: 5px 5px 15px 5px rgba(176,176,178,0.3);
         width: 20%;

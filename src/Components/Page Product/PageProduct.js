@@ -2,7 +2,6 @@ import { StylePageProduct } from "./StylePageProduct";
 import { Link } from "react-router-dom";
 
 export const PageProduct = (props) =>{
-debugger
             return(
                 <><StylePageProduct>
                     <div className="page_product_name">
@@ -20,7 +19,13 @@ debugger
                         </div>
                         <div className="page_product_price">
                             <p>{props.product.price}₽</p>
-                            <div onClick={()=> props.postaddInBacket(props.idUser, props.product.name, props.product.price, 1 , props.product.img, props.product.id)}>Добавить в корзину</div>
+                            <div onClick={()=> props.authorized ?
+                             props.postaddInBacket(props.idUser, 
+                                                    props.product.name, 
+                                                    props.product.price, 1 , 
+                                                    props.product.img, 
+                                                    props.product.id) 
+                                : props.addProductInBascetUser({...props.product, quantity: 1})}>Добавить в корзину</div>
                         </div>
                     </div>
         

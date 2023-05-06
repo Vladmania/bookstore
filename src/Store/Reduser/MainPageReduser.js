@@ -1,3 +1,4 @@
+import {requestProduct} from '../../Components/Api/ServerRequests'
 const SET_PRODUCTS = "SET_PRODUCTS"
 
 export const initState = {
@@ -18,3 +19,9 @@ export const MainPageReduser = (store = initState, action) => {
 }
 
 export const setProduct = (products) => ({type: SET_PRODUCTS, products})
+
+export const requestGetProduct = ()=>{
+    return(dispatch)=>{
+        requestProduct().then(res => dispatch(setProduct(res)))
+    }
+}

@@ -19,6 +19,12 @@ class BasketControler {
         res.json(prod.rows[0])
 
     }
+    async editorFromBacket(req, res){
+        const {quantity, id} = req.body
+        const prod = await poll.query(`UPDATE products_in_baskets SET quantity = $1 where id = $2 RETURNING *`, [quantity, id])
+        res.json(prod.rows[0])
+
+    }
 }
 
 module.exports = new BasketControler()

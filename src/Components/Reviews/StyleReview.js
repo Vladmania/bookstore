@@ -10,6 +10,9 @@ export const StyleReview = styled.div`
    .review_avatar_in_nickname img{
     width: 80px;
     height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px black solid;
     margin: 0 30 0 0px;
    }
    .review_avatar_in_nickname p{

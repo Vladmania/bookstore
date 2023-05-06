@@ -2,7 +2,9 @@ import { connect } from "react-redux";
 import { Basket } from "./Basket"; 
 import { deleteProduct } from "../../Store/Reduser/InBasketReduser";
 import { addProductInBascet } from "../../Store/Reduser/InBasketReduser"; 
-import { requestFlag } from '../../Store/Reduser/InBasketReduser'
+import { requestFlag, increaseQuantity, 
+    decreaseQuantity, putEditorIncreaseBasket,
+    putEditorDecreaseBasket, deleteProductBasket } from '../../Store/Reduser/InBasketReduser'
 
 let mapStateToProps = (state) =>{
     return{
@@ -23,6 +25,21 @@ let mapDispatchToProps = (dispatch) =>{
         },
         requestFlag: (flag)=>{
             dispatch(requestFlag(flag))
+        },
+        increaseQuantity: (id)=>{
+            dispatch(increaseQuantity(id))
+        },
+        decreaseQuantity: (id)=>{
+            dispatch(decreaseQuantity(id))
+        },
+        putEditorIncreaseBasket: (quantity, id)=>{
+            dispatch(putEditorIncreaseBasket(quantity, id))
+        },
+        putEditorDecreaseBasket: (quantity, id)=>{
+            dispatch(putEditorDecreaseBasket(quantity, id))
+        },
+        deleteProductBasket: (id)=>{
+            dispatch(deleteProductBasket(id))
         }
     }
 }
